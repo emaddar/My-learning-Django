@@ -46,20 +46,21 @@ def tripadvisor_scraper():
     for p in soup.findAll('div',{'class':'price-wrap'}):
         prices.append(p.text.replace('₹','').strip())  
 
-    links = []
-    adress = []
-    i = 1
-    for l in soup.find_all('a', {'class': 'property_title prominent'}):
-        url_page = f"https://www.tripadvisor.fr/{l['href']}"
-        links.append(url_page)
+    # links = []
+    # adress = []
+    # i = 1
+    # for l in soup.find_all('a', {'class': 'property_title prominent'}):
+    #     url_page = f"https://www.tripadvisor.fr/{l['href']}"
+    #     links.append(url_page)
 
-        new_soup = get_page_contents(url_page)    
-        adress.append(new_soup.find('span',{'class':'fHvkI PTrfg'}).text)
-        # print(f"Adress hotel : {i} : OK")
-        i += 1
+    #     new_soup = get_page_contents(url_page)    
+    #     adress.append(new_soup.find('span',{'class':'fHvkI PTrfg'}).text)
+    #     # print(f"Adress hotel : {i} : OK")
+    #     i += 1
 
     # Create the dictionary.
-    dict = {'Hotel Names':hotels,'Ratings':ratings,'Number of Reviews':reviews,'Prices':prices, "Adress" : adress , "links": links}
+    # dict = {'Hotel Names':hotels,'Ratings':ratings,'Number of Reviews':reviews,'Prices':prices, "Adress" : adress , "links": links}
+    dict = {'Hotel Names':hotels,'Ratings':ratings,'Number of Reviews':reviews,'Prices':prices, "links": links}
 
     # Create the dataframe.
     hotel_list = pd.DataFrame.from_dict(dict)
