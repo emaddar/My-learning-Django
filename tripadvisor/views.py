@@ -55,7 +55,7 @@ def tripadvisor_scraper():
 
         new_soup = get_page_contents(url_page)    
         adress.append(new_soup.find('span',{'class':'fHvkI PTrfg'}).text)
-        print(f"Adress hotel : {i} : OK")
+        # print(f"Adress hotel : {i} : OK")
         i += 1
 
     # Create the dictionary.
@@ -63,7 +63,8 @@ def tripadvisor_scraper():
 
     # Create the dataframe.
     hotel_list = pd.DataFrame.from_dict(dict)
-    hotel_list.head(10)
+    return hotel_list
+    # hotel_list.head(10)
 
     pass
 
@@ -71,4 +72,6 @@ def tripadvisor_scraper():
 
 # Create your views here.
 def tripadvisor(request):
-        return render(request, 'tripadvisor/tripadvisorScraper.html')
+        df = tripadvisor_scraper()
+        context = {"df": df.to_html}
+        return render(request, 'tripadvisor/tripadvisorScraper.html', context=context)
