@@ -54,9 +54,9 @@ INSTALLED_APPS = [
     "authentification",
     'widget_tweaks',
     'crispy_forms',
-    
+    'base',
+    'tripadvisor'
     # Ajouter les applications
-    
 ]
 
 MIDDLEWARE = [

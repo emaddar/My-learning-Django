@@ -1,0 +1,25 @@
+
+<navbar class="navbar bg-base-100">
+    <div class="flex-1">
+      <a href="/" class="nav-link px-2 link-secondary">
+        <svg class="bi me-2" width="100" height="10" role="img" aria-label="Bootstrap"><i class="fa-sharp fa-solid fa-house fa-2xl"></i></svg>
+      </a>
+    </div>
+    <div class="flex-none">
+      {% if user.is_authenticated %}
+        <span class="navbar-text mr-8"> Welcome : {{user.get_username}}</span>
+        <ul class="menu menu-horizontal p-0">
+            
+              
+          <li class="list-none"><a href="{% url 'logout' %}?next={{request.path}}" class="btn btn-outline btn-secondary rounded-lg">log out</a></li>
+      {% else %}
+              
+          {% comment %} <li class="list-none pr-4"><a href="{% url 'login' %}"  class="btn btn-outline btn-secondary rounded-lg" >Login</a></li>
+          <li class="list-none"><a href="{% url 'signup' %}" class="btn btn-outline btn-secondary rounded-lg" >Sign-up</a></li> {% endcomment %}
+            
+        </ul>
+
+        {% endif %}
+    
+    </div>
+</navbar>
