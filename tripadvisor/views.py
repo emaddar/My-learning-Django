@@ -60,7 +60,7 @@ def tripadvisor_scraper():
 
     # Create the dictionary.
     # dict = {'Hotel Names':hotels,'Ratings':ratings,'Number of Reviews':reviews,'Prices':prices, "Adress" : adress , "links": links}
-    dict = {'Hotel Names':hotels,'Ratings':ratings,'Number of Reviews':reviews,'Prices':prices, "links": links}
+    dict = {'Hotel Names':hotels,'Ratings':ratings,'Number of Reviews':reviews,'Prices':prices}
 
     # Create the dataframe.
     hotel_list = pd.DataFrame.from_dict(dict)
