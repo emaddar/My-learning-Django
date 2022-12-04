@@ -34,17 +34,17 @@ def tripadvisor_scraper():
     for name in soup.findAll('div',{'class':'listing_title'}):
         hotels.append(name.text.strip())
 
-    ratings = []
-    for rating in soup.findAll('a',{'class':'ui_bubble_rating'}):
-        ratings.append(rating['alt'])  
+    # ratings = []
+    # for rating in soup.findAll('a',{'class':'ui_bubble_rating'}):
+    #     ratings.append(rating['alt'])  
 
-    reviews = []
-    for review in soup.findAll('a',{'class':'review_count'}):
-        reviews.append(review.text.strip())
+    # reviews = []
+    # for review in soup.findAll('a',{'class':'review_count'}):
+    #     reviews.append(review.text.strip())
 
-    prices = []
-    for p in soup.findAll('div',{'class':'price-wrap'}):
-        prices.append(p.text.replace('₹','').strip())  
+    # prices = []
+    # for p in soup.findAll('div',{'class':'price-wrap'}):
+    #     prices.append(p.text.replace('₹','').strip())  
 
     # links = []
     # adress = []
@@ -60,7 +60,7 @@ def tripadvisor_scraper():
 
     # Create the dictionary.
     # dict = {'Hotel Names':hotels,'Ratings':ratings,'Number of Reviews':reviews,'Prices':prices, "Adress" : adress , "links": links}
-    dict = {'Hotel Names':hotels,'Ratings':ratings,'Number of Reviews':reviews,'Prices':prices}
+    dict = {'Hotel Names':hotels}
 
     # Create the dataframe.
     hotel_list = pd.DataFrame.from_dict(dict)
@@ -73,6 +73,6 @@ def tripadvisor_scraper():
 
 # Create your views here.
 def tripadvisor(request):
-        df = "Emad"
-        context = {"df": df}
+        df = tripadvisor_scraper()
+        context = {"df": df.to_html}
         return render(request, 'tripadvisor/tripadvisorScraper.html', context=context)
