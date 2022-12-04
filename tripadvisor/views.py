@@ -73,6 +73,6 @@ def tripadvisor_scraper():
 
 # Create your views here.
 def tripadvisor(request):
-        df = tripadvisor_scraper()
+        df = "Emad"
         context = {"df": df.to_html}
         return render(request, 'tripadvisor/tripadvisorScraper.html', context=context)
